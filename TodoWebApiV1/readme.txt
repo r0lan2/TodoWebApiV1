@@ -1,5 +1,5 @@
 ﻿1) create a new todo POST
-http://localhost:60772/api/todo/createtodo
+http://localhost/todoapi/todo/createtodo
 in the body of the request:
 {
 	"Title": "Taks 66",
@@ -7,7 +7,7 @@ in the body of the request:
 }
 options in postman: raw /json
 2) get all todos 
-http://localhost:60772/api/todo
+http://localhost/todoapi/todo/getall
 
 3) get todo by id
-http://localhost:60772/api/todo/1
+http://localhost/todoapi/todo/GetTodo?id=1

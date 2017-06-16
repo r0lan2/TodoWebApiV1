@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using TodoWebApiV1.Models;
 
 namespace TodoWebApiV1.Entities
 {
@@ -29,9 +31,24 @@ namespace TodoWebApiV1.Entities
             return _context.Todos.OrderBy(s => s.Title).ToList();
         }
 
+        public Todo UpdateTodo(TodoDTO todo)
+        {
+            var todoEntityToUpdate = _context.Todos.FirstOrDefault(t => t.Id == todo.Id);
+            todoEntityToUpdate.Complete = todo.Complete;
+            todoEntityToUpdate.Title = todo.Title;
+            return todoEntityToUpdate;
+        }
+
+
         public void AddTodo(Todo newTodo)
         {
             _context.Todos.Add(newTodo);
+        }
+
+        public void DeleteTodo(int  todoId)
+        {
+            var todo = _context.Todos.FirstOrDefault(t => t.Id == todoId);
+            _context.Todos.Remove(todo);
         }
 
         public bool Save()
